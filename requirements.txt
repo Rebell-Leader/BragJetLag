@@ -1,0 +1,9 @@
+sqlalchemy
+requests
+python-dotenv
+openai
+aiogram
+langgraph
+langchain
+langchain-openai
+FlightRadarAPI
