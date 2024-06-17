@@ -7,3 +7,4 @@ langgraph
 langchain
 langchain-openai
 FlightRadarAPI
+apscheduler
