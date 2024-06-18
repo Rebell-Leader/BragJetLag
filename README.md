@@ -1,24 +1,9 @@
 # BragJetLag
 BragJetLag is a Telegram LLM-powered chatbot that generates personalized recommendations for a user having a flight.
 
-This chatbot has an ability to search the exact flight by date and time, using SkyScanner API (#TODO migrate to stable API), and send the user notifications on particular time with the exact recommendations. The recommendations are based on the user's assessment data and flight information.
-
+This chatbot can search for the exact flight by date and time using Skyscanner API (#TODO migrate to stable API) and send user notifications at a particular time with exact recommendations. The recommendations are based on the user's assessment data and flight information.
 
 ## Project Structure
-BragJetLag/
-│
-├── __init__.py
-├── bot.py
-├── config.py
-├── database.py
-├── handlers.py
-├── scheduler.py
-├── models.py
-├── requirements.txt
-├── Dockerfile
-└── .env
-
-
 * __init__.py Initializes the app module.
 * bot.py Main entry point for the bot. Sets up the bot, dispatcher, and starts polling. Also initializes the scheduler.
 * config.py Contains configuration variables such as the Telegram API token and the database URL. Loads environment variables using python-dotenv.
@@ -59,5 +44,5 @@ Welcome to the {bot name}! 🌙 It seems you're not registered yet. Complete our
 
 1. Create a virtual environment: `python -m venv venv` and activate it `source venv/bin/activate`
 2. Install requirements: `pip install -r requirements.txt`
-3. Fill out the .env file, using the .env.example template: prepare the Telegram and OpenAI api keys.
+3. Fill out the .env file, using the .env.example template: prepare the Telegram and OpenAI API keys.
 4. Run the bot with `python bot.py`
