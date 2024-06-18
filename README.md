@@ -1,7 +1,36 @@
 # BragJetLag
 BragJetLag is a Telegram LLM-powered chatbot that generates personalized recommendations for a user having a flight.
 
-This chatbot can search for the exact flight by date and time using Skyscanner API (#TODO migrate to stable API) and send user notifications at a particular time with exact recommendations. The recommendations are based on the user's assessment data and flight information.
+This chatbot has an ability to search the exact flight by date and time, using SkyScanner API (#TODO migrate to stable API), and send the user notifications on particular time with the exact recommendations. The recommendations are based on the user's assessment data and flight information.
+
+
+## Project Structure
+BragJetLag/
+│
+├── __init__.py
+├── bot.py
+├── config.py
+├── database.py
+├── handlers.py
+├── scheduler.py
+├── models.py
+├── requirements.txt
+├── Dockerfile
+└── .env
+
+
+* __init__.py Initializes the app module.
+* bot.py Main entry point for the bot. Sets up the bot, dispatcher, and starts polling. Also initializes the scheduler.
+* config.py Contains configuration variables such as the Telegram API token and the database URL. Loads environment variables using python-dotenv.
+* database.py Sets up the SQLite database using SQLAlchemy. Defines the User, Message, and ScheduledMessage models. Contains the init_db function to create tables if they don't exist.
+* handlers.py Contains the command and message handlers for the bot. Handles user registration, logging messages, and scheduling messages.
+* scheduler.py Manages scheduled messages using APScheduler. Defines functions for scheduling messages, loading scheduled messages from the database, and sending messages at the specified times.
+* models.py Contains functions for interacting with the database, such as creating users, logging messages, and scheduling messages.
+* requirements.txt Lists the Python dependencies required for the project, including aiogram, SQLAlchemy, python-dotenv, and APScheduler.
+* Dockerfile Docker configuration file for containerizing the application. Sets up the Python environment, installs dependencies, and runs the bot.
+* .env Environment variables file. Should include the Telegram bot token and any other sensitive configuration data.
+
+
 
 ## Prompt examples
 SYSTEM_PROMPT = "You are an expert in designing personalized, science-backed sleep and circadian protocols. Your goal is to create a detailed, tailored plan that addresses an individual's chronotype and preferences, with the aim of enhancing their sleep quality and daytime alertness for dealing with jet lag. Your recommendations should be actionable and time-specific."
@@ -30,5 +59,5 @@ Welcome to the {bot name}! 🌙 It seems you're not registered yet. Complete our
 
 1. Create a virtual environment: `python -m venv venv` and activate it `source venv/bin/activate`
 2. Install requirements: `pip install -r requirements.txt`
-3. Fill out the .env file, using the .env.example template: prepare the Telegram and OpenAI API keys.
-4. Run the bot with
+3. Fill out the .env file, using the .env.example template: prepare the Telegram and OpenAI api keys.
+4. Run the bot with `python bot.py`

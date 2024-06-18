@@ -1,4 +1,5 @@
 #!/bin/bash
 
-docker build -t BragJetLag .
-docker run -d -p 5000:5000 --env-file .env BragJetLag
+docker build -t flight-recommendations-chatbot .
+docker run -d --name telegram_bot_container --env-file .env flight-recommendations-chatbot
+

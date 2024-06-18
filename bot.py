@@ -32,8 +32,6 @@ async def main():
     logger.info("Starting SleepWell TG bot...")
 
     # Ensure the database is initialized
-
-
     init_db()
 
     bot: Bot = Bot(token=TELEGRAM_TOKEN, default=DefaultBotProperties(parse_mode="HTML"))

@@ -5,14 +5,14 @@ import functools
 
 from models import get_user_by_chat_id, create_user, log_message, schedule_message
 from datetime import datetime, timedelta
-from llm_provider import generate_responce
+from llm_provider import generate_response
 from config import DEBUG_MODE, MAX_TELEGRAM_MESSAGE_LEN
 
 
 
 router = Router()
 
-
+#set project-level variables here
 BOT_NAME = "SleepWellBot"
 FORM_LINK = "https://form.typeform.com/to/Wv8KDBuG"
 
@@ -79,10 +79,12 @@ def debug_handler_reply(handler):
 async def start(message: types.Message):
     user = get_user_by_chat_id(message.chat.id)
     if user:
+        #authorized user woth no assessment passed
         await message.answer("Welcome back! How may I help you?")
         await message.answer(f"You are already registered. Make sure to complete our circadian \
     assessment to get recommendations that align with your internal clocks! Here is the link: {FORM_LINK}")
     else:
+        #non-authorized user, register and send assessment link
         create_user(message.from_user.username, message.chat.id)
         await message.answer(f"Welcome to the {BOT_NAME}! 🌙 It seems you're not registered yet. Complete our circadian \
     assessment to get recommendations that align with your internal clocks! Here is the link: {FORM_LINK}")
@@ -107,7 +109,7 @@ async def chat_with_agent(message: types.Message):
 
         # Format prompt
         prompt = await format_chat_history_as_prompt(recent_history)
-        responce = generate_responce(user_request=prompt, user_name=message.from_user.username, user_id=message.from_user.id)
-        await message.answer(responce)
+        response = generate_response(user_request=prompt, user_name=message.from_user.username, user_id=message.from_user.id)
+        await message.answer(response)
     else:
         await message.answer("You need to /start first.")

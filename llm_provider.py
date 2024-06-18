@@ -10,7 +10,7 @@ from models import schedule_message
 
 from config import OPENAI_API_KEY
 
-
+#define the tools
 @tool
 def flight_info_tool(flight_id: str) -> str:
     '''GetFlightInfo - Use this tool to search for the flight information by flight ID'''
@@ -30,13 +30,15 @@ def schedule_message_tool(user_id: str, msg: str, send_datetime_delta: str) -> s
 
     return 'All set'
 
+#add mock function to load user assessment data
 def get_user_assessment_data(user_name) -> str:
     field_data = 'What is your name?	What is your number? This way I can communicate tips to you.	What is your age?	Which problems do you have related to sleep, if any?	What have you used to improve your sleep?	What is your typical bed time and wake-up time *on weekdays*?	What is your typical bed time and wake-up time *on weekends*?	During the past month, how long does it typically take you to fall asleep after going to bed (in min)?	How many hours of sleep do you typically get per night (in hours)?	Do you experience difficulty waking up in the morning, even after getting enough sleep?	Do you consider yourself a “morning person” or a “night owl”?	Do you need an alarm to wake up on most days? 	How long after waking up does it typically take you to feel fully alert and focused? 	When do you feel most alert and productive?	When do you prefer engaging in mentally demanding activities (like analysis, writing, coding)?'
     user_data_list = ['Kevin	+14157875337	35	Excessive daytime sleepiness, Difficulty waking up or getting out of bed	Supplements (e.g. melatonin), Changing surroundings (e.g. sleep mask, blackout curtains), Mindfulness and meditation, Exercise	1 am - 8 am	2 am - 10 am	15	8	ЛОЖЬ	Night Owl	ИСТИНА	30 min to 1h	Evening	Morning, Evening', 'Shelley	17657484758	72	Difficulty falling asleep, Difficulty waking up or getting out of bed	Supplements (e.g. melatonin), Exercise	2am-11am	3am-12pm	20	6	TRUE	Night Owl	TRUE	30 min to 1h	Evening	Evening', 'Ash	17658082359	25	Difficulty waking up or getting out of bed, Excessive daytime sleepiness, Difficulty staying asleep	Prescription medication (e.g. trazodone, Ambien), Exercise, None	10pm - 7am	2am - 12pm	35	7	TRUE	I don\'t know	FALSE	Less than 30 min	Morning	Afternoon', 'Niko	9,96E+11	29	Physical symptoms (e.g. headaches, pain), Difficulty falling asleep	Changing surroundings (e.g. sleep mask, blackout curtains), Supplements (e.g. melatonin)	01am-10pm	1am-10am	30	8	FALSE	afternoon person	TRUE	30 min to 1h	Afternoon	Evening', 'Megan	14157875448	65	Emotional symptoms (e.g. irritability, depression), Difficulty staying asleep, Difficulty falling asleep	Prescription medication (e.g. trazodone, Ambien), Changing surroundings (e.g. sleep mask, blackout curtains)	10 pm - 6 am	10 pm - 6 am	40	8	FALSE	Morning Person	FALSE	I don\'t know	Morning	Morning', 'AAA	79013871127	25	Difficulty falling asleep, Difficulty staying asleep	Supplements (e.g. melatonin)	11 pm - 8 am	11 pm - 8 am	20	8	FALSE	Morning Person	TRUE	Less than 30 min	Morning	Morning', 'g	12015550123	23	Difficulty falling asleep	Supplements (e.g. melatonin)	11	11	35	5	FALSE	Morning Person	FALSE	I don\'t know	I don\'t know	I don\'t know']
     random_assessment = random.choice(user_data_list)
     return f'Assessment for {user_name}. {field_data}: {random_assessment}'
 
-def generate_responce(user_request, user_name, user_id):
+#add main function to generate response with openAI LLM agent
+def generate_response(user_request, user_name, user_id):
     tools = [flight_info_tool, schedule_message_tool]
     SYSTEM_PROMPT = '''You are an expert in designing personalized, science-backed sleep and circadian protocols.
     Your goal is to create a detailed, tailored plan that addresses an individual's chronotype and preferences,
@@ -68,12 +70,8 @@ def generate_responce(user_request, user_name, user_id):
     This gradual adjustment shifts the sleep-wake cycle ahead before your trip.'''
 
     user_info = get_user_assessment_data(user_name)
+    #add current date ana time to set the scheduler properly
     date_time = datetime.datetime.now()
-
-    #non-authorized
-    welcome_message = '''Welcome to the {bot name}! 🌙 It seems you're not registered yet. Complete our circadian \
-        assessment to get recommendations that align with your internal clocks! Here is the link: https://form.typeform.com/to/Wv8KDBuG'''
-
 
     memory = MemorySaver()
 
@@ -85,10 +83,6 @@ def generate_responce(user_request, user_name, user_id):
     config = {"configurable": {"thread_id": "main-thread"}}
 
     messages = app.invoke({"messages": [("human", user_request)]}, config)
-    # request_responce = {
-    #     "input": user_request,
-    #     "output": messages["messages"][-1].content,
-    # }
 
     return messages["messages"][-1].content
 

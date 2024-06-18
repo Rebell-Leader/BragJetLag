@@ -1,3 +1,4 @@
+#Handle TG errors here
 class ImproperlyConfigured(Exception):
     """An environment variable is missing."""
 

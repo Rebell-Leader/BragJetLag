@@ -1,11 +1,10 @@
 import asyncio
 from aiogram import Bot
-from datetime import datetime
 from config import TELEGRAM_TOKEN
 from models import get_pending_messages, mark_message_as_sent
 
 bot = Bot(token=TELEGRAM_TOKEN)
-
+#define the scheduler
 async def send_scheduled_messages():
     while True:
         pending_messages = get_pending_messages()
