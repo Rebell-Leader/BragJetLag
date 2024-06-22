@@ -35,12 +35,12 @@ This gradual adjustment shifts the sleep-wake cycle ahead before your trip.”
 Welcome to the {bot name}! 🌙 It seems you're not registered yet. Complete our circadian assessment to get recommendations that align with your internal clocks!
 
 ## Dialog example:
-User: In July I have a flight from Paris to Mexico - please give me some advice for healthy sleeping habits
-Bot: To assist you better, could you please provide me with your flight number? If you don't have it handy, you can also let me know your exact departure and arrival times for your flight from Paris to Mexico. This information will help me to accurately create a sleep and alertness optimization plan for you.
-User: The flight is on 23.07.2024. The flight number is TE-ST14, from 09:15 to 19:40. Give me some recommendations to prepare for the flight and sleep well
-Bot: Could you please confirm the exact departure and arrival times and locations for your flight on July 23rd, 2024 from Paris to Mexico? It appears I couldn't find any information based on the flight number.
-User: That's correct, it is the charter flight
-Bot: Here are your personalized recommendations and scheduled reminders for your upcoming trip from Paris to Mexico:
+ - User: In July I have a flight from Paris to Mexico - please give me some advice for healthy sleeping habits
+ - Bot: To assist you better, could you please provide me with your flight number? If you don't have it handy, you can also let me know your exact departure and arrival times for your flight from Paris to Mexico. This information will help me to accurately create a sleep and alertness optimization plan for you.
+ - User: The flight is on 23.07.2024. The flight number is TE-ST14, from 09:15 to 19:40. Give me some recommendations to prepare for the flight and sleep well
+ - Bot: Could you please confirm the exact departure and arrival times and locations for your flight on July 23rd, 2024 from Paris to Mexico? It appears I couldn't find any information based on the flight number.
+ - User: That's correct, it is the charter flight
+ - Bot: Here are your personalized recommendations and scheduled reminders for your upcoming trip from Paris to Mexico:
 
 ### Before the Flight
 
