@@ -79,15 +79,14 @@ def debug_handler_reply(handler):
 async def start(message: types.Message):
     user = get_user_by_chat_id(message.chat.id)
     if user:
-        #authorized user woth no assessment passed
-        await message.answer("Welcome back! How may I help you?")
-        await message.answer(f"You are already registered. Make sure to complete our circadian \
-    assessment to get recommendations that align with your internal clocks! Here is the link: {FORM_LINK}")
+        #authorized user with no assessment passed
+        await message.answer("Welcome back! Are you planning a flight?")
+        await message.answer(f"You are already registered. Make sure to complete our circadian assessment to get recommendations that align with your internal clocks! Here is the link: {FORM_LINK}")
     else:
+        #TODO authorize user and save the username properly, move assessment from external form to a separate TG route, save assessment results to DB
         #non-authorized user, register and send assessment link
         create_user(message.from_user.username, message.chat.id)
-        await message.answer(f"Welcome to the {BOT_NAME}! 🌙 It seems you're not registered yet. Complete our circadian \
-    assessment to get recommendations that align with your internal clocks! Here is the link: {FORM_LINK}")
+        await message.answer(f"Welcome to the {BOT_NAME}! 🌙 It seems you're not registered yet. Complete our circadian assessment to get recommendations that align with your internal clocks! Here is the link: {FORM_LINK}")
         await message.answer("Welcome! You are now registered.")
 
 
