@@ -112,3 +112,4 @@ Safe travels and enjoy your trip! If you need any additional adjustments or have
 2. The interaction with the flight API is currently mocked up - need to use the real API provider (or search + crawler, because we only need the flight date and time + time zones, nothing complex).
 3. Currently there is no user profile button in the Telegram bot - add the list of flights, list of recommendations for each flight, and notifications.
 4. Move the sleep assessment from the separate form to the TG bot itself, to the route after the user registration. Add assessment results to the user profile with the button to update the assessment results.
+5. Add Admin ID to .env and admin panel to manage users (and their profile info), notifications, flights and so on - editing and removing DB entries.
