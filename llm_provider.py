@@ -40,10 +40,8 @@ def get_user_assessment_data(user_name) -> str:
 #add main function to generate response with openAI LLM agent
 def generate_response(user_request, user_name, user_id):
     tools = [flight_info_tool, schedule_message_tool]
-    SYSTEM_PROMPT = '''You are an expert in designing personalized, science-backed sleep and circadian protocols.
-    Your goal is to create a detailed, tailored plan that addresses an individual's chronotype and preferences,
-    with the aim of enhancing their sleep quality and daytime alertness for dealing with jet lag. Your recommendations
-    should be actionable and time-specific. You need to develop the recommendations for User to follow, and plan to send them in an appropriate time (like a reminder to go to sleep in time, or take melatonin 30 minutes before sleeping), using the provided Tools.
+    SYSTEM_PROMPT = '''As an expert in sleep and circadian protocols, your task is to create personalized plans for individuals dealing with jet lag. These plans should consider the person’s chronotype, preferences, and actionable steps to improve sleep quality and daytime alertness.
+    You need to develop the recommendations for User to follow, and plan to send them in an appropriate time (like a reminder to go to sleep in time, or take melatonin 30 minutes before sleeping), using the provided Tools.
     You must use tool "GetFlightInfo" (flight_info_tool tool name), to search for the flight by the flight number provided by User. If nothing is found, just ask the User about the departure and arrival time and locations (remember about the different timezones!).
     You also have to use the tool called ScheduleAlert (schedule_message_tool tool name) to schedule the messages for the user, for the particular time (provide message text and delta in minutes from now).
     For your convenience, you will see the list of entities from the dialog history, and some info about the user, as well as the recommendation example for another user.
@@ -51,8 +49,7 @@ def generate_response(user_request, user_name, user_id):
     '''
 
 
-    USER_PROMPT = """Based on the provided circadian assessment (user's personal assessment), generate recommendations \
-    that are targeting melatonin, caffeine, physical activity, light exposure, sleep onset and offset timing.
+    USER_PROMPT = """Using the user’s circadian assessment, provide recommendations related to melatonin, caffeine, physical activity, light exposure, and optimal sleep onset and offset timing.
     """
     suffix = """Begin the dialog with the user"
     Entities from the dialog: {entities}
@@ -61,14 +58,12 @@ def generate_response(user_request, user_name, user_id):
     Recommendation example: {recommendation_example}
     {agent_scratchpad}"""
 
-    recommendation_example = '''Hi {Name}, for your flight from {origin} to {destination} on {date}, \
-        here is my recommendations for optimizing your sleep and alertness for today:
-    🌞 Take 0.5mg melatonin at 10:30pm to help advance your sleep onset
-    ☕ Avoid caffeine after 3pm
-    🌇 Get outdoor light exposure in the morning to help anchor your circadian clock
-    🚶‍♂️ Do some light exercise like walking between 5-7pm
-
-    This gradual adjustment shifts the sleep-wake cycle ahead before your trip.'''
+    recommendation_example = '''Hello {Name}, for your upcoming flight from {origin} to {destination} on {date}, consider the following recommendations to optimize your sleep and alertness:
+🌞 Take 0.5mg of melatonin at 10:30pm to advance your sleep onset.
+☕ Avoid caffeine consumption after 3pm.
+🌇 Get outdoor light exposure in the morning to anchor your circadian clock.
+🚶‍♂️ Engage in light exercise, such as walking, between 5pm and 7pm.
+These adjustments will help shift your sleep-wake cycle before your trip.'''
 
     user_info = get_user_assessment_data(user_name)
     #add current date ana time to set the scheduler properly

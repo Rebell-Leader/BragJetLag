@@ -18,22 +18,20 @@ This chatbot can search for the exact flight by date and time using Skyscanner A
 
 
 ## Prompt examples
-SYSTEM_PROMPT = "You are an expert in designing personalized, science-backed sleep and circadian protocols. Your goal is to create a detailed, tailored plan that addresses an individual's chronotype and preferences, with the aim of enhancing their sleep quality and daytime alertness for dealing with jet lag. Your recommendations should be actionable and time-specific."
-
-USER_PROMPT = """Based on the provided circadian assessment (user's personal assessment), generate recommendations that are targeting melatonin, caffeine, physical activity, light exposure, sleep onset and offset timing.
+SYSTEM_PROMPT = """As an expert in sleep and circadian protocols, your task is to create personalized plans for individuals dealing with jet lag. These plans should consider the person’s chronotype, preferences, and actionable steps to improve sleep quality and daytime alertness."""
+USER_PROMPT = """Using the user’s circadian assessment, provide recommendations related to melatonin, caffeine, physical activity, light exposure, and optimal sleep onset and offset timing.
 """
 ## Message suggestions:
 Recommendations
-“Hi {Name}, for your flight from {origin} to {destination} on {date}, here is my recommendations for optimizing your sleep and alertness for today:
-🌞 Take 0.5mg melatonin at 10:30pm to help advance your sleep onset
-☕ Avoid caffeine after 3pm
-🌇 Get outdoor light exposure in the morning to help anchor your circadian clock
-🚶‍♂️ Do some light exercise like walking between 5-7pm
-This gradual adjustment shifts the sleep-wake cycle ahead before your trip.”
+"Hello {Name}, for your upcoming flight from {origin} to {destination} on {date}, consider the following recommendations to optimize your sleep and alertness:
+🌞 Take 0.5mg of melatonin at 10:30pm to advance your sleep onset.
+☕ Avoid caffeine consumption after 3pm.
+🌇 Get outdoor light exposure in the morning to anchor your circadian clock.
+🚶‍♂️ Engage in light exercise, such as walking, between 5pm and 7pm.
+These adjustments will help shift your sleep-wake cycle before your trip."
 
 ## Welcome message:
-Welcome to the {bot name}! 🌙 It seems you're not registered yet. Complete our circadian assessment to get recommendations that align with your internal clocks!
-
+Welcome to {bot name}! 🌙 If you haven’t registered yet, complete our circadian assessment to receive personalized recommendations aligned with your internal clocks.
 ## Dialog example:
  - User: In July I have a flight from Paris to Mexico - please give me some advice for healthy sleeping habits
  - Bot: To assist you better, could you please provide me with your flight number? If you don't have it handy, you can also let me know your exact departure and arrival times for your flight from Paris to Mexico. This information will help me to accurately create a sleep and alertness optimization plan for you.
@@ -43,57 +41,32 @@ Welcome to the {bot name}! 🌙 It seems you're not registered yet. Complete our
  - Bot: Here are your personalized recommendations and scheduled reminders for your upcoming trip from Paris to Mexico:
 
 ### Before the Flight
-
-#### Three Days Before Departure (20th July):
-- 🌞 **Morning Light Exposure**: Get light exposure within 30 minutes of waking up for at least 30 minutes.
-- 🌙 **Melatonin**: Take 0.5mg melatonin at 11:15 PM to help shift your sleep cycle earlier.
-- ☕️ **Avoid Caffeine**: Avoid caffeine after 3:00 PM.
-
-#### Two Days Before Departure (21st July):
-- 🌞 **Morning Light Exposure**: Continue morning light exposure.
-- 🌙 **Melatonin**: Take 0.5mg melatonin at 11:00 PM.
-- ☕️ **Avoid Caffeine**: Avoid caffeine after 3:00 PM.
-- 🚶‍♂️ **Evening Exercise**: Engage in light exercise like walking between 5:00 PM - 7:00 PM.
-
-#### Day Before Departure (22nd July):
-- 🌞 **Morning Light Exposure**: Keep up with the morning light exposure.
-- 🌙 **Melatonin**: Take 0.5mg melatonin at 10:45 PM.
-- ☕️ **Avoid Caffeine**: Avoid caffeine after 3:00 PM.
-- 🚶‍♂️ **Evening Exercise**: Engage in light exercise between 5:00 PM - 7:00 PM.
-
-### Day of the Flight (23rd July):
-- **Sleep**: Try to wake up by 6:15 AM to begin shifting to the Mexico time zone.
-- **During the Flight**:
-  - 🌙 **Melatonin**: Take 0.5mg melatonin 30 minutes before you plan to sleep on the plane to help you adjust.
-  - 💦 **Hydration**: Stay hydrated by drinking plenty of water.
-  - 🍎 **Light Meals**: Eat light and easily digestible meals.
-  - 💡 **Light Management**: Use a sleep mask to block light during sleep periods on the plane and try to get light exposure during Mexico’s daylight hours.
-
-### After Arrival (23rd July):
-- 🌞 **Light Exposure**: Upon arrival, get natural sunlight exposure to help reset your internal clock.
-- **Sleeping Schedule**: Try to stay awake until at least 10:00 PM Mexico time to adjust your sleep schedule.
-- **Meal Timing**: Eat in alignment with the local time.
-
-I have set up reminders for you to make sure you follow through with the actions:
-
-1. 🌞 Start getting light exposure on 20th July.
-2. 🌙 Take melatonin at 11:15 PM on 20th July.
-3. ☕️ Avoid caffeine after 3:00 PM on 20th July.
-4. 🌞 Continue morning light exposure on 21st July.
-5. 🌙 Take melatonin at 11:00 PM on 21st July.
-6. 🚶‍♂️ Evening exercise on 21st July.
-7. 🌞 Keep up with morning light exposure on 22nd July.
-8. 🌙 Take melatonin at 10:45 PM on 22nd July.
-9. 🚶‍♂️ Evening exercise on 22nd July.
-10. Wake up by 6:15 AM on 23rd July.
-11. **During the flight**:
-    - 🌙 Take melatonin 30 minutes before you plan to sleep.
-    - 💦 Stay hydrated.
-    - 🍎 Light meals.
-    - 💡 Use a sleep mask.
-
-Safe travels and enjoy your trip! If you need any additional adjustments or have further questions, feel free to ask.
-
+Three Days Before Departure (20th July):
+🌞 Morning Light Exposure: Get natural light exposure within 30 minutes of waking up for at least 30 minutes. This helps anchor your circadian rhythm.
+🌙 Melatonin: Take 0.5mg of melatonin at 11:15 PM to help shift your sleep cycle earlier.
+☕️ Avoid Caffeine: Refrain from consuming caffeine after 3:00 PM.
+Two Days Before Departure (21st July):
+🌞 Morning Light Exposure: Continue your morning light exposure routine.
+🌙 Melatonin: Take 0.5mg of melatonin at 11:00 PM.
+☕️ Avoid Caffeine: Maintain caffeine avoidance after 3:00 PM.
+🚶‍♂️ Evening Exercise: Engage in light exercise, such as walking, between 5:00 PM and 7:00 PM. This promotes alertness during the day and better sleep at night.
+Day Before Departure (22nd July):
+🌞 Morning Light Exposure: Keep up with your morning light exposure.
+🌙 Melatonin: Take 0.5mg of melatonin at 10:45 PM.
+☕️ Avoid Caffeine: Continue avoiding caffeine after 3:00 PM.
+🚶‍♂️ Evening Exercise: Again, engage in light exercise between 5:00 PM and 7:00 PM.
+Day of the Flight (23rd July):
+Sleep Timing: Try to wake up by 6:15 AM to begin adjusting to the Mexico time zone.
+During the Flight:
+🌙 Melatonin: Take 0.5mg of melatonin 30 minutes before you plan to sleep on the plane. This helps synchronize your internal clock.
+💦 Stay Hydrated: Drink plenty of water during the flight.
+🍎 Light Meals: Opt for light, easily digestible meals.
+💡 Light Management: Use a sleep mask to block light during sleep periods on the plane. Also, try to get natural light exposure during Mexico’s daylight hours.
+After Arrival (23rd July):
+🌞 Light Exposure: Upon arrival, seek natural sunlight exposure to reset your internal clock.
+Sleep Schedule: Stay awake until at least 10:00 PM Mexico time to adjust your sleep schedule.
+Meal Timing: Align your meals with the local time.
+I’ve also set up reminders for each action to help you stay on track. Safe travels, and feel free to ask if you need further adjustments or have any questions! 😊
 ## Running the Application in Docker
 
 1. Build the Docker image: `docker build -t flight-recommendations-chatbot .`
